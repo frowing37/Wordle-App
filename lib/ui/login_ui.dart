@@ -40,7 +40,7 @@ class loginScreen extends StatelessWidget {
     
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => gamerBaseScreen(userData: userData)),
+      MaterialPageRoute(builder: (context) => gameModeSelection(userData: userData)),
       );
 
       print("Giriş işlemi başarılı");
