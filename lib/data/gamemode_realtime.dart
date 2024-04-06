@@ -32,6 +32,6 @@ class Gamemode_RT {
 }
 
   void addItem(Map<String, dynamic> data) async {
-    _dbRef.set(data);
+    _dbRef.push().set(data);
   }
 }

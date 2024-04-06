@@ -2,6 +2,7 @@ import 'dart:ui';
 import 'package:app4/data/users.dart';
 import 'package:app4/model/userData.dart';
 import 'package:app4/ui/gamerbase_ui.dart';
+import 'package:app4/ui/gamerooms_ui.dart';
 import 'package:app4/ui/register_ui.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -40,7 +41,7 @@ class loginScreen extends StatelessWidget {
     
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => gameModeSelection(userData: userData)),
+      MaterialPageRoute(builder: (context) => activeRooms(userData: userData)),
       );
 
       print("Giriş işlemi başarılı");

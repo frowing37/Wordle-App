@@ -1,3 +1,5 @@
+import 'package:app4/data/gamemode_realtime.dart';
+import 'package:app4/model/gameMode.dart';
 import 'package:app4/model/userData.dart';
 import 'package:flutter/material.dart';
 
@@ -53,11 +55,13 @@ class gamerBaseScreen extends State<gameModeSelection> {
     });
   }
 
+  Gamemode_RT rt = new Gamemode_RT();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Aktif Odalar', style: TextStyle(fontWeight: FontWeight.bold)),
+        title: Text('Yeni Oda Oluştur', style: TextStyle(fontWeight: FontWeight.bold)),
         backgroundColor: Colors.white,
       ),
       body: Stack(
@@ -142,21 +146,17 @@ class gamerBaseScreen extends State<gameModeSelection> {
         ]
       ),
           SizedBox(height: 20),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              ElevatedButton(onPressed: () {},
+          ElevatedButton(onPressed: () {
+            if(mode) {
+              rt.addItem(gameMode("Harf Sabiti Modu", number, userData.displayName," ").toJson());
+            } else {
+              rt.addItem(gameMode("Kelime Önerisi Modu", number, userData.displayName, " ").toJson());
+            }
+          },
                          style: ElevatedButton.styleFrom(
                 padding: EdgeInsets.symmetric(vertical: 19, horizontal: 40),
               ) ,
-                         child: Text("Kanal Ara",style: TextStyle(fontSize: 18,color: Color.fromRGBO(50, 168, 82, 1)))),
-                         ElevatedButton(onPressed: () {},
-                         style: ElevatedButton.styleFrom(
-                padding: EdgeInsets.symmetric(vertical: 12, horizontal: 40),
-              ) ,
-                         child: Text("Kanal Oluştur\n     ve Bekle", style: TextStyle(fontSize: 14,color: Color.fromRGBO(50, 168, 82, 1))))
-            ],
-          )
+                         child: Text("Odayı Oluştur ve Bekle",style: TextStyle(fontSize: 18,color: Color.fromRGBO(50, 168, 82, 1)))),              
         ],
       )
         ]
