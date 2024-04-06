@@ -73,8 +73,22 @@ class gamerBaseScreen extends State<gameModeSelection> {
                           ),
           Column(
         children: [
-          Row(children: [Padding(padding: EdgeInsets.only(left: 10,top: 50)),Text("Kullanıcı ID: ",style: TextStyle(fontSize: 17.0,fontWeight: FontWeight.bold, color: Colors.white)),Text("${userData.uid}",style: TextStyle(fontSize: 13.0,fontWeight: FontWeight.bold, color: Colors.white))]),
-          Row(children: [Padding(padding: EdgeInsets.only(left: 10)),Text("Kullanıcı Adı: ${userData.displayName}",style: TextStyle(fontSize: 17.0,fontWeight: FontWeight.bold, color: Colors.white))]),
+          SizedBox(height: 5),
+          Stack(children: [
+            Container( padding: EdgeInsets.only(top: 60),
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(20.0),
+                                border: Border.all(color: Colors.white),
+                                gradient: LinearGradient(colors:[Color.fromRGBO(115, 250, 248, 0.5),Color.fromRGBO(50, 168, 82, 0.5)])
+                              )
+                            ),
+            Column(children: [
+            SizedBox(height: 5),
+            Row(children: [Padding(padding: EdgeInsets.only(left: 10)),Text("Kullanıcı ID: ",style: TextStyle(fontSize: 17.0,fontWeight: FontWeight.bold, color: Colors.white)),Text("${userData.uid}",style: TextStyle(fontSize: 13.0,fontWeight: FontWeight.bold, color: Colors.white))]),
+            SizedBox(height: 2),
+            Row(children: [Padding(padding: EdgeInsets.only(left: 10)),Text("Kullanıcı Adı: ${userData.displayName}",style: TextStyle(fontSize: 17.0,fontWeight: FontWeight.bold, color: Colors.white))]),
+            ])
+          ],),
           SizedBox(height: 30),
           Text("Oyun Modunu Belirleyin",style: TextStyle(fontSize: 23,fontWeight: FontWeight.bold,color: Colors.white)),
           Container(width: 280,height:5,decoration: BoxDecoration(borderRadius: BorderRadius.circular(10.0),color: Colors.white)),

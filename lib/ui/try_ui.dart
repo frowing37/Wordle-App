@@ -1,14 +1,25 @@
+import 'dart:async';
+import 'dart:html';
+import 'dart:js_interop';
 import 'dart:ui';
 import 'package:app4/data/users.dart';
 import 'package:app4/model/userData.dart';
 import 'package:app4/ui/gamerbase_ui.dart';
 import 'package:app4/ui/register_ui.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 
-class tryScreen extends StatelessWidget {
+class tryload extends StatefulWidget {
+  @override
+  tryScreen createState() => tryScreen();
+}
 
+class tryScreen extends State<tryload> {
+
+  tryScreen();
   UserDB user = new UserDB();
 
   @override
