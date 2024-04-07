@@ -51,9 +51,9 @@ class activeGameRooms extends State<activeRooms> {
         backgroundColor: Colors.white,
       ),
       body: Column(
-  crossAxisAlignment: CrossAxisAlignment.stretch,
-  children: [
-    Container(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+      Container(
       padding: EdgeInsets.only(top: 7,bottom: 7),
       decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(20.0),

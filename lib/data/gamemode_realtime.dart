@@ -2,15 +2,17 @@ import 'dart:async';
 
 import 'package:app4/model/gameMode.dart';
 import 'package:firebase_database/firebase_database.dart';
+import 'package:flutter/rendering.dart';
 
 class Gamemode_RT {
 
-  DatabaseReference _dbRef = FirebaseDatabase.instance.ref().child("gameMode");
+  DatabaseReference _dbRef = FirebaseDatabase.instance.ref().child("gameMode/");
 
   Future<List<gameMode>> readItems() async {
   List<gameMode> gameModes = [];
-
+  print("BBBBBBBBBB");
   var subscription = await _dbRef.onValue.listen((event) {
+    print("AAAAAAAAAAAAAAAAAAA");
     var json = event.snapshot.value;
     if (json != null && json is Map<String,dynamic>) {
       // Veritabanından gelen veriyi gameMode nesnelerine dönüştürme
