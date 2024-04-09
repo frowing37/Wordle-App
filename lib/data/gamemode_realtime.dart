@@ -22,6 +22,7 @@ class Gamemode_RT {
             value["letterCount"],
             value["user1"],
             value["user2"],
+            value["roomID"]
           );
           gameModes.add(mode);
         });
@@ -40,4 +41,9 @@ class Gamemode_RT {
   void addItem(Map<String, dynamic> data) async {
     _dbRef.push().set(data);
   }
+
+  void deleteItem(int roomId) async {
+
+  }
+
 }

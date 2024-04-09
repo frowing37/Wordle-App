@@ -13,6 +13,7 @@ class activeRooms extends StatefulWidget {
 
   @override
   activeGameRooms createState() => activeGameRooms(userData: userData);
+  
 }
 
 class activeGameRooms extends State<activeRooms> {
@@ -59,8 +60,6 @@ class activeGameRooms extends State<activeRooms> {
     // Timer'ı durdurun
     // Bu aslında gerekli değil, çünkü StatefulWidget dispose olduğunda zaten otomatik olarak durdurulur
   }
-
-
 
   void createRoom() {
     Navigator.push(
