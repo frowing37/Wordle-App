@@ -22,8 +22,8 @@ class tryScreen extends State<tryload> {
   tryScreen();
   UserDB user = new UserDB();
   Gamemode_RT rt = new Gamemode_RT();
-  gameMode mode = new gameMode("Harf kısıtlamalı", 9, "Frowi", "Anan");
-  gameMode mode2 = new gameMode("aklsdj kısıtlamalı", 5, "Frowi", "buban");
+  //gameMode mode = new gameMode("Harf kısıtlamalı", 9, "Frowi", "Anan");
+  //gameMode mode2 = new gameMode("aklsdj kısıtlamalı", 5, "Frowi", "buban");
 
   @override
 Widget build(BuildContext context) {
@@ -42,7 +42,7 @@ Widget build(BuildContext context) {
               ),
             ),
         TextButton(
-        onPressed: () { rt.addItem(mode2.toJson()); },
+        onPressed: () { },
         child: Text("BAS LAN", style: TextStyle(fontWeight: FontWeight.bold,color: Colors.white, fontSize: 30.0)),
         
       )]

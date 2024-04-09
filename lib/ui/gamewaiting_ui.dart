@@ -93,7 +93,7 @@ class _gameWaiting extends State<gameWaiting> with SingleTickerProviderStateMixi
         SizedBox(height: 100),
         Row(mainAxisAlignment: MainAxisAlignment.center, children: [
           ElevatedButton(
-              onPressed: () {},
+              onPressed: () { exitAndDelete(roomID); },
               child: Text("            Odayı Sil,\n Beklemekten Vazgeç",
                   style: TextStyle(
                       fontSize: 17,

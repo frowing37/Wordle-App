@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:app4/data/gamemode_realtime.dart';
 import 'package:app4/model/gameMode.dart';
 import 'package:app4/model/userData.dart';
+import 'package:app4/ui/gamewaiting_ui.dart';
 import 'package:flutter/material.dart';
 
 class gameModeSelection extends StatefulWidget {
@@ -59,13 +60,13 @@ class gamerBaseScreen extends State<gameModeSelection> {
   }
 
   Random random = Random();
-  int? randomNumber;
+  int randomNumber = 0;
 
   void gotoWait(int roomID) {
     Navigator.push(
       context,
       MaterialPageRoute(
-          builder: (context) => gameModeSelection(userData: userData)),
+          builder: (context) => gameWaiting(roomID: roomID, userData: userData)),
     );
   }
 
@@ -223,13 +224,15 @@ class gamerBaseScreen extends State<gameModeSelection> {
                     if (mode) {
                       randomNumber = random.nextInt(90000) + 10000;
                       rt.addItem(gameMode("Harf Sabiti Modu", number,
-                              userData.displayName, " ", randomNumber)
+                              userData.displayName, " ", randomNumber.toString())
                           .toJson());
+                      gotoWait(randomNumber);
                     } else {
                       randomNumber = random.nextInt(90000) + 10000;
                       rt.addItem(gameMode("Kelime Önerisi Modu", number,
-                              userData.displayName, " ", randomNumber)
+                              userData.displayName, " ", randomNumber.toString())
                           .toJson());
+                      gotoWait(randomNumber);
                     }
                   },
                   style: ElevatedButton.styleFrom(
