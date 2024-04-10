@@ -1,5 +1,55 @@
 class words {
-  List<String> four = [
+
+  bool any4(String word) {
+    bool result = false;
+
+    four.forEach((element) { 
+      if(element == word) {
+        result = true;
+      }
+    });
+
+    return result;
+  }
+
+  bool any5(String word) {
+    bool result = false;
+
+    five.forEach((element) { 
+      if(element == word) {
+        result = true;
+      }
+    });
+
+    return result;
+  }
+
+  bool any6(String word) {
+    bool result = false;
+
+    six.forEach((element) { 
+      if(element == word) {
+        result = true;
+      }
+    });
+
+    return result;
+  }
+
+  bool any7(String word) {
+    bool result = false;
+
+    seven.forEach((element) { 
+      if(element == word) {
+        result = true;
+      }
+    });
+
+    return result;
+  }
+
+
+ static List<String> four = [
   'ANNE','ADAM,''AYAK','AYNA','AĞIR','ASMA','AŞIK','ANAY','AĞIZ','AĞIR','ASMA','ATMA','ARAB','AZAP',
   'AFİF', 'AHEN', 'ASMA', 'ALET', 'ALIN', 'ADIM', 'AKSİ', 'AYAN', 'AÇIK', 'ASYA', 'AÇAR', 'ACAR', 'ANIK', 'AKIL', 'ATAK', 'AKAN', 'AFET', 'ARPA', 'AFRA', 'ASAR', 'ARIK', 'ARIK', 'ARMA', 'AKAR', 'ATIŞ', 'AYAR', 'AFİF', 'ACAR', 'ALAN', 'AÇAR', 'AYAR', 'ADIM', 'AFAK', 'AÇIK', 'ATAR', 'AÇIK', 'AYAK', 'AYAZ', 'ALIN', 'AMİL', 'AFİL', 'ARAZ', 'ASAR', 'AKAR', 'ARAK', 'AYAN', 'AYAK', 'AYAN', 'AMAN', 'AMEL', 'ALAY', 'ASAR', 'AVNİ', 'AKAR', 'ANKA', 'AYAR', 'ARIK', 'ASIL', 'ACAR', 'AÇAR', 'AZAP', 'AFİF', 'AYAZ', 'ATAR', 'ATAR', 'AÇAR', 'AMAN', 'AYVA', 'ATAR', 'AKAN', 'ARIK', 'ACAR', 'ATAR', 'ANIK', 'ADAK', 'AYVA', 'ADAK', 'ANAK', 'ASMA', 'AMAN', 'AKAR', 'AMCA', 'AVNİ', 'ARIK', 'AFİF', 'AKSU',
   'ABAT', 'ABES', 'ABİS', 'ABLA', 'ABLİ', 'ABRA', 'ABUK', 'ABUS', 'ACAR', 'ACEM', 'ACEP', 'ACİL', 'ACİZ', 'ACUL', 'ACUN', 'ACUR', 'ACVE', 'ACYO', 'AÇAN', 'AÇAR', 'AÇIK', 'AÇIM', 'AÇIŞ', 'AÇIT', 'AÇKI', 'AÇMA', 'ADAK', 'ADAM', 'ADAP', 'ADAŞ', 'ADAY', 'ADCI', 'ADEM', 'ADET', 'ADIL', 'ADIM', 'ADİL', 'ADLI', 'ADLİ', 'AFAK', 'AFAL', 'AFAT', 'AFET', 'AFİF', 'AFİS', 'AFİŞ', 'AGAH', 'AGEL', 'AGOP', 'AGUŞ', 'AĞAÇ', 'AĞCI', 'AĞDA', 'AĞIL', 'AĞIM', 'AĞIN', 'AĞIR', 'AĞIŞ', 'AĞIT', 'AĞIZ', 'AĞLI', 'AĞMA', 'AĞRI', 'AĞSI', 'AHAR', 'AHÇI', 'AHDİ', 'AHIR', 'AHİR', 'AHİT', 'AHİZ', 'AHŞA', 'AİLE', 'AJAN', 'AJUR', 'AKAÇ', 'AKAK', 'AKAR', 'AKÇA', 'AKÇE', 'AKIL', 'AKIM', 'AKIN', 'AKIŞ', 'AKİK', 'AKİL', 'AKİM', 'AKİS', 'AKİT', 'AKLI', 'AKLİ', 'AKMA', 'AKNE', 'AKOR', 'AKSE', 'AKSİ', 'AKSU', 'AKUR', 'AKUT', 'AKVA', 'ALAN', 'ALAY', 'ALAZ', 'ALÇI', 'ALDI', 'ALEM', 'ALET', 'ALEV', 'ALFA', 'ALGI', 'ALIÇ', 'ALIK', 'ALIM', 'ALIN', 'ALIŞ', 'ALİL', 'ALİM', 'ALLI', 'ALMA', 'ALPU', 'ALTI', 'ALTO', 'AMAÇ', 'AMAL', 'AMAN', 'AMCA', 'AMEL', 'AMFİ', 'AMİL', 'AMİN', 'AMİP', 'AMİR', 'AMİT', 'AMMA', 'AMME', 'AMOR', 'AMUT', 'ANAÇ', 'ANAL', 'ANCA', 'ANIK', 'ANIT', 'ANIZ', 'ANİF', 'ANKA', 'ANMA', 'ANNE', 'ANOT', 'ANUT', 'ANÜS', 'AORT', 'APAK', 'APAŞ', 'APAZ', 'APEL', 'APIŞ', 'APRE', 'APSE', 'ARAÇ', 'ARAF', 'ARAK', 'ARAP', 'ARAZ', 'ARDA', 'ARGO', 'ARIK', 'ARIŞ', 'ARIZ', 'ARİF', 'ARKA', 'ARLI', 'ARMA', 'ARPA', 'ARSA', 'ARŞE', 'ARTI', 'ARUZ', 'ARYA', 'ARZU', 'ASAL', 'ASAP', 'ASAR', 'ASES', 'ASIK', 'ASIL', 'ASIM', 'ASIR', 'ASİL', 'ASİT', 'ASKI', 'ASLA', 'ASLİ', 'ASMA', 'ASRİ', 'ASYA', 'AŞAR', 'AŞÇI', 'AŞIK', 'AŞIM', 'AŞIT', 'AŞİR', 'AŞMA', 'AŞOZ', 'ATAK', 'ATAŞ', 'ATÇI', 'ATEH', 'ATEL', 'ATEŞ', 'ATIF', 'ATIK', 'ATIL', 'ATIM', 'ATIŞ', 'ATİK', 'ATKI', 'ATLI', 'ATMA', 'ATOL', 'ATOM', 'AVAL', 'AVAM', 'AVAR', 'AVAZ', 'AVCI', 'AVLU', 'AVRO', 'AVUÇ', 'AYAK', 'AYAL', 'AYAN', 'AYAR', 'AYAŞ', 'AYAZ', 'AYÇA', 'AYET', 'AYIK', 'AYIN', 'AYIP', 'AYIT', 'AYİN', 'AYLA', 'AYLI', 'AYMA', 'AYNA', 'AYNI', 'AYNİ', 'AYOL', 'AYRI', 'AYVA', 'AZAP', 'AZAR', 'AZAT', 'AZCA', 'AZEL', 'AZIK', 'AZIŞ', 'AZİL', 'AZİM', 'AZİT', 'AZİZ', 'AZMA', 'AZOL', 'AZOT', 'ABAK', 'ABİŞ', 'ACİP', 'ADAT', 'AĞCA', 'AKSA', 'ALAT', 'ANAT', 'ASAN', 'ATAR', 'AURA'
@@ -13,7 +63,7 @@ class words {
   'ÜCRA', 'ÜÇER', 'ÜÇLÜ', 'ÜÇÜZ', 'ÜLEN', 'ÜLEŞ', 'ÜLKE', 'ÜLKÜ', 'ÜLÜŞ', 'ÜMİT', 'ÜMMİ', 'ÜMÜK', 'ÜNİK', 'ÜNLÜ', 'ÜNYE', 'ÜRAT', 'ÜREM', 'ÜRKÜ', 'ÜRÜN', 'ÜSTE', 'ÜŞME', 'ÜTME', 'ÜVEY', 'ÜVEZ', 'ÜZGÜ', 'ÜZME', 'ÜZRE', 'ÜZÜM', 'VAAT', 'VAAZ', 'VADE', 'VADİ', 'VAHA', 'VAHİ', 'VAİZ', 'VAKA', 'VAKİ', 'VAKS', 'VALE', 'VALF', 'VALİ', 'VALS', 'VAMP', 'VANA', 'VASİ', 'VASL', 'VAZO', 'VEBA', 'VECA', 'VECT', 'VEDA', 'VEFA', 'VELİ', 'VENA', 'VERE', 'VERİ', 'VETO', 'VEYA', 'VİDA', 'VİDO', 'VİNÇ', 'VİRA', 'VİRT', 'VİYA', 'VİZE', 'VOLE', 'VOLİ', 'VOLT', 'VUKU', 'VURU', 'VİRE', 'YABA', 'YAĞI', 'YAHU', 'YAKA', 'YAKI', 'YALI', 'YAMA', 'YANİ', 'YAPI', 'YARA', 'YARI', 'YASA', 'YAŞA', 'YATI', 'YAVE', 'YAYA', 'YAZI', 'YEDİ', 'YEİS', 'YEKE', 'YELE', 'YEME', 'YENİ', 'YETİ', 'YIKI', 'YISA', 'YIVA', 'YİNE', 'YOGA', 'YOGİ', 'YOMA', 'YONT', 'YÖRE', 'YUHA', 'YUKA', 'YUMA', 'YUNA', 'YURT', 'YUVA', 'YÜCE', 'ZAAF', 'ZADE', 'ZAİL', 'ZAİT', 'ZAMK', 'ZAPT', 'ZARA', 'ZARF', 'ZATİ', 'ZAYİ', 'ZAZA', 'ZEKA', 'ZEKİ', 'ZERK', 'ZEVÇ', 'ZEVK', 'ZINK', 'ZIRH', 'ZİFT', 'ZİLE', 'ZİLİ', 'ZİNA', 'ZİRA', 'ZİYA', 'ZOKA', 'ZONA', 'ZONK', 'ZULA', 'ZÜHT', 'ZEDE'
 ];
 
- List<String> five = [
+ static List<String> five = [
   'ABACI', 'ABADİ', 'ABALI', 'ABANA', 'ABANİ', 'ABAŞO', 'ABAZA', 'ABBAS', 'ABDAL', 'ABECE', 'ABHAZ', 'ABİDE', 'ABİYE', 'ABLAK', 'ABONE', 'ABOSA', 'ABRAŞ', 'ABULİ', 'ACABA', 'ACARA', 'ACELE', 'ACEMİ', 'ACEZE', 'ACICA', 'ACILI', 'ACIMA', 'ACİBE', 'ACUBE', 'ACUZE', 'AÇGÖZ', 'AÇLIK', 'AÇMAK', 'AÇMAZ', 'ADALE', 'ADALI', 'ADAMA', 'ADAMI', 'ADANA', 'ADEDİ', 'ADESE', 'ADETA', 'ADINA', 'ADRES', 'ADSAL', 'ADSIZ', 'AFAKİ', 'AFAZİ', 'AFGAN', 'AFİFE', 'AFİLİ', 'AFİŞE', 'AFONİ', 'AFSUN', 'AFŞAR', 'AFŞİN', 'AFTOS', 'AFYON', 'AGAMİ', 'AGORA', 'AGRAF', 'AĞCIK', 'AĞILI', 'AĞLAK', 'AĞMAK', 'AĞNAM', 'AĞRAZ', 'AĞYAR', 'AHALİ', 'AHBAP', 'AHCAR', 'AHENK', 'AHFAT', 'AHFEŞ', 'AHİZE', 'AHKAM', 'AHLAF', 'AHLAK', 'AHLAT', 'AHMAK', 'AHRAZ', 'AHŞAP', 'AHVAL', 'AİDAT', 'AJANS', 'AJİTE', 'AKABE', 'AKAİT', 'AKAJU', 'AKALA', 'AKBAŞ', 'AKÇIL', 'AKDUT', 'AKEMİ', 'AKICI', 'AKİDE', 'AKKOR', 'AKKÖY', 'AKKUŞ', 'AKLAN', 'AKLEN', 'AKLIK', 'AKMAK', 'AKMAN', 'AKMAZ', 'AKONT', 'AKORT', 'AKPAS', 'AKRAN', 'AKREP', 'AKSAK', 'AKSAM', 'AKSAN', 'AKSON', 'AKŞAM', 'AKŞIN', 'AKTAR', 'AKTAŞ', 'AKTİF', 'AKTÖR', 'AKVAM', 'ALACA', 'ALAKA', 'ALARM', 'ALAZA', 'ALBAY', 'ALBÜM', 'ALÇAK', 'ALENİ', 'ALEVİ', 'ALEYH', 'ALGIN', 'ALICI', 'ALİZE', 'ALKAN', 'ALKIM', 'ALKIŞ', 'ALKİL', 'ALKOL', 'ALLAH', 'ALLEM', 'ALLIK', 'ALMAÇ', 'ALMAK', 'ALMAN', 'ALMAŞ', 'ALMUS', 'ALNAÇ', 'ALTES', 'ALTIK', 'ALTIN', 'ALTIZ', 'ALTLI', 'ALYAN', 'ALYON', 'AMADE', 'AMBAR', 'AMBER', 'AMELE', 'AMELİ', 'AMİGO', 'AMORF', 'AMPER', 'AMPİR', 'AMPUL', 'AMUDİ', 'ANACA', 'ANALI', 'ANANE', 'ANCAK', 'ANDAÇ', 'ANDIÇ', 'ANDIK', 'ANDIZ', 'ANELE', 'ANEMİ', 'ANGIÇ', 'ANGIN', 'ANGUT', 'ANİDE', 'ANİME', 'ANJİN', 'ANKET', 'ANLAK', 'ANLAM', 'ANLIK', 'ANMAK', 'ANONS', 'ANSIZ', 'ANTEN', 'ANTET', 'ANTİK', 'ANTLI', 'ANTRE', 'ANÜRİ', 'ANYON', 'ANZAK', 'APACI', 'APİKO', 'APLİK', 'APORT', 'APOŞİ', 'APOTR', 'APRİL', 'APSİS', 'APTAL', 'ARABA', 'ARABİ', 'ARACI', 'ARAKA', 'ARALI', 'ARAMA', 'ARAMİ', 'ARAZİ', 'ARDAK', 'ARDIÇ', 'ARDIL', 'AREFE', 'ARENA', 'ARGAÇ', 'ARGIN', 'ARGIT', 'ARGON', 'ARICI', 'ARIZA', 'ARIZİ', 'ARİFE', 'ARİYA', 'ARİZA', 'ARKAÇ',
   'BABAÇ', 'BABAİ', 'BACAK', 'BAÇÇI', 'BADAL', 'BADAS', 'BADAT', 'BADEM', 'BADIÇ', 'BADİK', 'BADYA', 'BAFRA', 'BAGAJ', 'BAGET', 'BAĞAN', 'BAĞCI', 'BAĞDA', 'BAĞIL', 'BAĞIM', 'BAĞIN', 'BAĞIR', 'BAĞIŞ', 'BAĞIT', 'BAĞLI', 'BAHAİ', 'BAHAR', 'BAHÇE', 'BAHİR', 'BAHİS', 'BAHRİ', 'BAKAÇ', 'BAKAM', 'BAKAN', 'BAKIM', 'BAKIR', 'BAKIŞ', 'BAKİR', 'BAKLA', 'BAKMA', 'BALAR', 'BALAT', 'BALCI', 'BALDO', 'BALET', 'BALIK', 'BALİĞ', 'BALKI', 'BALLI', 'BALON', 'BALOZ', 'BALTA', 'BALYA', 'BAMBU', 'BAMYA', 'BANAK', 'BANAL', 'BANAZ', 'BANDO', 'BANJO', 'BANKA', 'BANKO', 'BANMA', 'BANYO', 'BARAJ', 'BARAK', 'BARAN', 'BARBA', 'BARCI', 'BARÇA', 'BARDA', 'BARDO', 'BAREM', 'BARET', 'BARIŞ', 'BARİT', 'BARİZ', 'BARKA', 'BAROK', 'BARON', 'BARUT', 'BASAK', 'BASAR', 'BASEN', 'BASIK', 'BASIM', 'BASIN', 'BASIŞ', 'BASİL', 'BASİT', 'BASKI', 'BASMA', 'BASSO', 'BASTI', 'BASUR', 'BASYA', 'BAŞAK', 'BAŞAT', 'BAŞÇI', 'BAŞKA', 'BAŞLI', 'BAŞTA', 'BATAK', 'BATAR', 'BATIK', 'BATIL', 'BATIN', 'BATIŞ', 'BATİK', 'BATKI', 'BATMA', 'BATON', 'BATUR', 'BAVCI', 'BAVLI', 'BAVUL', 'BAYAN', 'BAYAT', 'BAYIR', 'BAYMA', 'BAYRI', 'BAZAL', 'BAZEN', 'BAZİK', 'BAZİT', 'BEBEK', 'BECET', 'BEDEL', 'BEDEN', 'BEDİİ', 'BEDİK', 'BEDİR', 'BEDÜK', 'BEGÜM', 'BEHER', 'BEHEY', 'BEHRE', 'BEKAR', 'BEKAS'
   'CACIK', 'CADDE', 'CAHİL', 'CAİZE', 'CALİP', 'CAMCI', 'CAMIZ', 'CAMİA', 'CAMİT', 'CAMLI', 'CAMSI', 'CANAN', 'CANIM', 'CANİK', 'CANİP', 'CANLI', 'CARLI', 'CARTA', 'CASUS', 'CAYIŞ', 'CAYMA', 'CAZCI', 'CAZİP', 'CAZLI', 'CEBEL', 'CEBİN', 'CEBİR', 'CEBRİ', 'CEDEL', 'CEDİT', 'CEDRE', 'CEHİL', 'CEHRE', 'CEHRİ', 'CEKET', 'CELAL', 'CELBE', 'CELEP', 'CELİL', 'CELSE', 'CEMAL', 'CEMAN', 'CEMİL', 'CEMRE', 'CENAH', 'CENAP', 'CENİN', 'CENUP', 'CEPÇİ', 'CEPHE', 'CEREN', 'CESET', 'CESİM', 'CESUR', 'CEVAP', 'CEVAZ', 'CEVİR', 'CEVİZ', 'CEVVİ', 'CEVZA', 'CEZAİ', 'CEZBE', 'CEZİR', 'CEZRİ', 'CEZVE', 'CIBIL', 'CICIK', 'CILIZ', 'CIVIK', 'CIVMA', 'CIZIK', 'CİBİN', 'CİBRE', 'CİCİK', 'CİCİM', 'CİCOZ', 'CİDAL', 'CİDAR', 'CİDDİ', 'CİĞER', 'CİHAN', 'CİHAR', 'CİHAT', 'CİHAZ', 'CİHET', 'CİLVE', 'CİMRİ', 'CİNAİ', 'CİNAS', 'CİNCİ', 'CİNLİ', 'CİNSİ', 'CİRİM', 'CİRİT', 'CİSİM', 'CİVAN', 'CİVAR', 'CİZRE', 'CİZYE', 'CONTA', 'CORUM', 'COŞKU', 'COŞMA', 'COŞUM', 'COŞUŞ', 'CUDAM', 'CUKKA', 'CUMBA', 'CUNDA', 'CUNTA', 'CUŞİŞ', 'CÜBBE', 'CÜCÜK', 'CÜLUS', 'CÜMLE', 'CÜNHA', 'CÜNUN', 'CÜNÜP', 'CÜRET', 'CÜRUF', 'CÜRÜM', 'CÜSSE', 'CILGA', 'CEMSE', 'ÇABUK', 'ÇADIR', 'ÇAĞLA', 'ÇAĞMA', 'ÇAĞRI', 'ÇAKAL', 'ÇAKAR', 'ÇAKER', 'ÇAKIL', 'ÇAKIM', 'ÇAKIN', 'ÇAKIR', 'ÇAKIŞ', 'ÇAKMA', 'ÇAKRA', 'ÇALAK', 'ÇALAP', 'ÇALAR', 'ÇALGI', 'ÇALIK', 'ÇALIM', 'ÇALIŞ', 'ÇALKI', 'ÇALMA', 'ÇALTI', 'ÇAMAŞ', 'ÇAMAT', 'ÇAMÇA', 'ÇAMUR', 'ÇANAK', 'ÇANCI', 'ÇANDI', 'ÇANLI', 'ÇANTA', 'ÇAPAK', 'ÇAPAR', 'ÇAPLA', 'ÇAPLI', 'ÇAPMA', 'ÇAPUL', 'ÇAPUT', 'ÇARIK', 'ÇARKA', 'ÇARPI', 'ÇARŞI', 'ÇASAR', 'ÇAŞIT', 'ÇATAK', 'ÇATAL', 'ÇATIK', 'ÇATIŞ', 'ÇATKI', 'ÇATMA', 'ÇAVLI', 'ÇAVMA', 'ÇAVUN', 'ÇAVUŞ', 'ÇAYAN', 'ÇAYCI', 'ÇAYIR', 'ÇAYLI', 'ÇEBİÇ', 'ÇECİK', 'ÇEÇEN', 'ÇEDİK', 'ÇEHRE', 'ÇEKÇE', 'ÇEKEK', 'ÇEKEL', 'ÇEKEM', 'ÇEKER', 'ÇEKİÇ', 'ÇEKİK', 'ÇEKİM', 'ÇEKİŞ', 'ÇEKME', 'ÇEKÜL', 'ÇELEK', 'ÇELEN', 'ÇELGİ', 'ÇELİK', 'ÇELİM', 'ÇELLO', 'ÇELME', 'ÇEMÇE', 'ÇEMEN', 'ÇEMİÇ', 'ÇEMİŞ', 'ÇENEK', 'ÇENET', 'ÇENGİ', 'ÇEPEL', 'ÇEPER', 'ÇEPEZ', 'ÇEPİN', 'ÇEPNİ', 'ÇERAĞ', 'ÇERÇİ', 'ÇEREZ', 'ÇERGE', 'ÇEŞİT', 'ÇEŞME',
@@ -144,8 +194,8 @@ class words {
 
  ];
 
- List<String> six = [];
+ static List<String> six = ['KKKKKK'];
 
- List<String> seven = [];
+ static List<String> seven = ["KKKKKKK"];
  
 }
