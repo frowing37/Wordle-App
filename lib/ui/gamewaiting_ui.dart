@@ -1,5 +1,7 @@
 import 'package:app4/data/gamemode_realtime.dart';
+import 'package:app4/data/thGame_realtime_database.dart';
 import 'package:app4/model/userData.dart';
+import 'package:app4/ui/gameStarting.dart';
 import 'package:app4/ui/gamerooms_ui.dart';
 import 'package:flutter/material.dart';
 
@@ -36,6 +38,20 @@ class _gameWaiting extends State<gameWaiting> with SingleTickerProviderStateMixi
   }
 
   Gamemode_RT rt = Gamemode_RT();
+  theGame_RT game_rt = theGame_RT();
+
+  void controlRoom(String roomID) async {
+    if(await rt.roomIsReady(roomID)) {
+      
+      var result = await game_rt.getGameWithUsername(userData.displayName.toString());
+      var value = await rt.getGameMode(roomID);
+
+      Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => gameStarting(value?.letterCount, userData, result)),
+      );  
+    }
+  }
 
   void exitAndDelete(int roomID) {
 

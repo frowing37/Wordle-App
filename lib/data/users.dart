@@ -14,8 +14,8 @@ Future<void> addUser(String username, String email, String password) async {
 }
 
 // Kullanıcıları getirme
-Stream<QuerySnapshot> getUsers() {
-  return usersCollection.snapshots();
+Future<QuerySnapshot> getUserByUsername(String? username) {
+    return usersCollection.where('username', isEqualTo: username).get();
 }
 
 // E-posta adresine göre kullanıcıyı arama

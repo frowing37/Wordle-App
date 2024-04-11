@@ -10,6 +10,8 @@ class gameMode {
 
   gameMode(this.name, this.letterCount, this.user1, this.user2, this.roomID);
 
+  gameMode.nul();
+
   Map<String, dynamic> toJson() {
     return {
       "name": name,

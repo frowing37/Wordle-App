@@ -43,20 +43,82 @@ class Gamemode_RT {
     _dbRef.push().set(data);
   }
 
-  Future<gameMode?> getGameModeByRoomID(int roomId) async {
-    var snapshot;
-    snapshot = await _dbRef.orderByChild("roomID").equalTo(roomId.toString()).once();
-    if (snapshot.value != null && snapshot.value is Map) {
-      var value = snapshot.values.first;
-      return gameMode(
-        value["name"],
-        value["letterCount"],
-        value["user1"],
-        value["user2"],
-        value["roomID"]
-      );
-    }
-    return null;
+  Future<gameMode?> updateGameMode(String user2, String roomId) async {
+    Completer<gameMode> completer = Completer<gameMode>();
+
+    try {
+    var subscription;
+    subscription = _dbRef.onValue.listen((event) {
+      var json = event.snapshot.value;
+      if (json != null && json is Map) {
+        json.forEach((key, value) {
+          if (value["roomID"].toString() == roomId.toString()) {
+            gameMode temp = gameMode(value["name"], value["letterCount"], value["user1"], user2, value["roomID"]);
+            _dbRef.child(key).update(temp.toJson()).then((_) {
+              subscription.cancel();
+              completer.complete(); // İşlem tamamlandı
+            }).catchError((error) {
+              completer.completeError(error); // Hata durumunda Completer ile hata döndürülür
+            });
+          }
+        });
+      }
+    });
+  } catch (error) {
+    completer.completeError(error); // Hata durumunda Completer ile hata döndürülür
+  }
+
+   return completer.future;
+  }
+
+  Future<gameMode?> getGameMode(String roomID) async {
+    Completer<gameMode> completer = Completer<gameMode>();
+    gameMode mode = gameMode.nul();
+
+  try {
+    var subscription;
+    subscription = _dbRef.onValue.listen((event) {
+      var json = event.snapshot.value;
+      if (json != null && json is Map) {
+        json.forEach((key, value) {
+          if(value["roomID"] == roomID) {
+            mode = gameMode(value["name"], value["letterCount"], value["user1"], value["user2"], value["roomID"]);
+            subscription.cancel();
+        completer.complete(mode);
+          }
+        });
+      }
+    });
+  } catch (error) {
+    print(error);
+  }
+  return completer.future;
+  }
+
+  Future<bool> roomIsReady(String roomID) async {
+    Completer<bool> completer = Completer<bool>();
+    bool ready = false;
+
+    try {
+    var subscription;
+    subscription = _dbRef.onValue.listen((event) {
+      var json = event.snapshot.value;
+      if (json != null && json is Map) {
+        json.forEach((key, value) {
+          if (value["roomID"]  == roomID) {
+            if(value["user2"] != " ") {
+              ready = true;
+              completer.complete(ready);
+            }
+          }
+        });
+      }
+    });
+  } catch (error) {
+    completer.completeError(error); // Hata durumunda Completer ile hata döndürülür
+  }
+
+   return completer.future;
   }
 
   Future<void> deleteItem(int roomId) async {
@@ -85,5 +147,6 @@ class Gamemode_RT {
 
   return completer.future; // Completer'ın Future nesnesi döndürülür
 }
+
 
 }

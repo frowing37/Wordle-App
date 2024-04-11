@@ -1,22 +1,27 @@
 import 'dart:async';
-
+import 'package:app4/model/theGame.dart';
+import 'package:app4/model/userData.dart';
 import 'package:app4/word_list/words.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
 class gameStarting extends StatefulWidget {
-  final int count;
+  final int? count;
+  final theGame game;
+  final UserData userData;
 
-  gameStarting(this.count);
+  gameStarting(this.count,this.userData,this.game);
 
   @override
-  _gameStartingState createState() => _gameStartingState(this.count);
+  _gameStartingState createState() => _gameStartingState(this.count,this.userData,this.game);
 }
 
 class _gameStartingState extends State<gameStarting> {
-  final int count;
+  final int? count;
+  final theGame game;
+  final UserData userData;
 
-  _gameStartingState(this.count);
+  _gameStartingState(this.count,this.userData,this.game);
   
   List<TextEditingController> controllers = [];
 
@@ -39,7 +44,7 @@ class _gameStartingState extends State<gameStarting> {
   }
 
   void controlWord(String word) {
-    if(word.length < count) {
+    if(word.length < count!) {
       setState(() {
         warningMessage = "Girdiğiniz kelimenin harf sayısında eksiklik var";
       });
@@ -148,7 +153,7 @@ class _gameStartingState extends State<gameStarting> {
   @override
   void initState() {
     super.initState();
-    for (int i = 0; i < widget.count; i++) {
+    for (int i = 0; i < widget.count!; i++) {
       controllers.add(TextEditingController());
     }
     timeCount();
@@ -173,12 +178,12 @@ class _gameStartingState extends State<gameStarting> {
       SizedBox(height: 20.0),  
       Row(
       mainAxisAlignment: MainAxisAlignment.center,
-      children: List.generate(widget.count, (index) {
+      children: List.generate(widget.count!, (index) {
         return Padding(
-          padding: count > 5 ? EdgeInsets.all(5.0) : EdgeInsets.all(8.0),
+          padding: count! > 5 ? EdgeInsets.all(5.0) : EdgeInsets.all(8.0),
           child: SizedBox(
-            width: count > 6 ? 45 : 50, // Kare boyutunu buradan ayarlayabilirsiniz
-            height: count > 6 ? 45 : 50, // Kare boyutunu buradan ayarlayabilirsiniz
+            width: count! > 6 ? 45 : 50, // Kare boyutunu buradan ayarlayabilirsiniz
+            height: count! > 6 ? 45 : 50, // Kare boyutunu buradan ayarlayabilirsiniz
             child: TextField(
               controller: controllers[index],
               style: TextStyle(fontSize: 21.0,fontWeight: FontWeight.bold),
@@ -191,7 +196,7 @@ class _gameStartingState extends State<gameStarting> {
                 border: OutlineInputBorder(borderSide: BorderSide(width:10.0))
               ),
               onChanged: (value) {
-                if (value.isNotEmpty && index < widget.count - 1) {
+                if (value.isNotEmpty && index < widget.count! - 1) {
                   FocusScope.of(context).nextFocus();
                 }
               },

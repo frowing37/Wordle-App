@@ -27,7 +27,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       routes: {
-        '/': (context) => gameStarting(4)
+        '/': (context) => loginScreen()
       }
     );
   }
