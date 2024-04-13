@@ -17,7 +17,7 @@ class theGame_RT {
         var json = event.snapshot.value;
         if(json != null && json is Map) {
           json.forEach((key, value) {
-            theGame game = theGame(value["gameID"],value["user1UID"], value["user1Name"], value["user2UID"], value["user2Name"]);
+            theGame game = theGame(value["gameID"],value["gameMode"],value["letterCount"],value["user1UID"], value["user1Name"], value["user2UID"], value["user2Name"]);
             games.add(game);
            });
 
@@ -44,11 +44,11 @@ class theGame_RT {
           json.forEach((key, value) {
             if(value["gameID"] == gameID) {
               if(value["user1UID"] == userID) {
-                game = theGame.allField(gameID, value["user1UID"], value["user1Name"], " ", value["user1IsReady"], value["user2UID"], value["user2Name"], targetWord, value["user2IsReady"]);
+                game = theGame.allField(gameID, value["gameMode"], value["letterCount"], value["user1UID"], value["user1Name"], " ", value["user1IsReady"], value["user2UID"], value["user2Name"], targetWord, value["user2IsReady"]);
                 game.setU1Ready();
                 _dbRef.child(key).update(game.toJson());
               } else {
-                game = theGame.allField(gameID, value["user1UID"], value["user1Name"], targetWord, value["user1IsReady"], value["user2UID"], value["user2Name"], " ", value["user2IsReady"]);
+                game = theGame.allField(gameID,value["gameMode"],value["letterCount"], value["user1UID"], value["user1Name"], targetWord, value["user1IsReady"], value["user2UID"], value["user2Name"], " ", value["user2IsReady"]);
                 game.setU2Ready();
                 _dbRef.child(key).update(game.toJson());
               }
@@ -110,7 +110,7 @@ class theGame_RT {
         if(json != null && json is Map) {
           json.forEach((key, value) {
             if(value["user1Name"] == user1name) {
-              game = theGame.allField(value["gameID"], value["user1UID"], value["user1Name"], value["user1Target"], value["user1IsReady"], value["user2UID"], value["user2Name"], value["user2Target"], value["user2IsReady"]);
+              game = theGame.allField(value["gameID"], value["gameMode"], value["letterCount"], value["user1UID"], value["user1Name"], value["user1Target"], value["user1IsReady"], value["user2UID"], value["user2Name"], value["user2Target"], value["user2IsReady"]);
             }
            });
 

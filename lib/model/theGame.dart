@@ -1,6 +1,9 @@
 class theGame {
 
   String? gameID;
+  String? gameMode;
+  String? letterCount;
+
   String? u1ID;
   String? u1Name;
   String? u1Target = " ";
@@ -11,9 +14,9 @@ class theGame {
   String? u2Target = " ";
   bool u2IsReady = false;
 
-  theGame(this.gameID,this.u1ID,this.u1Name,this.u2ID,this.u2Name);
+  theGame(this.gameID,this.gameMode,this.letterCount,this.u1ID,this.u1Name,this.u2ID,this.u2Name);
 
-  theGame.allField(this.gameID,this.u1ID,this.u1Name,this.u1Target,this.u1IsReady,this.u2ID,this.u2Name,this.u2Target,this.u2IsReady);
+  theGame.allField(this.gameID,this.gameMode,this.letterCount,this.u1ID,this.u1Name,this.u1Target,this.u1IsReady,this.u2ID,this.u2Name,this.u2Target,this.u2IsReady);
 
   theGame.nul();
 
@@ -44,6 +47,8 @@ class theGame {
   Map<String, dynamic> toJson() {
     return {
       "gameID": gameID,
+      "gameMode": gameMode,
+      "letterCount": letterCount,
       "user1UID": u1ID,
       "user1Name": u1Name,
       "user1Target" : u1Target,
@@ -58,6 +63,8 @@ class theGame {
   factory theGame.fromJson(Map<String, dynamic> json) {
     return theGame.allField(
       json['gameID'].toString(),
+      json['gameMode'].toString(),
+      json['letterCount'].toString(),
       json['user1UID'].toString(),
       json['user1Name'],
       json['user1Target'].toString(),

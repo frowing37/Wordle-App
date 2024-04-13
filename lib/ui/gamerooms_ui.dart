@@ -75,7 +75,7 @@ class activeGameRooms extends State<activeRooms> {
 
   Future<void> directToGameStarting(String user2, String roomId) async {
 
-    gameMode? temp = await rt.getAndUpdateGameMode(user2, roomId);
+    gameMode? temp = await rt.updateGameMode(user2, roomId);
     var result = await users.getUserByUsername(temp?.user1);
     String? user1uid;
 
@@ -85,7 +85,7 @@ class activeGameRooms extends State<activeRooms> {
       }
     
     int number = rnd.nextInt(100000) + 10000;
-    theGame game = theGame(number.toString(), user1uid, temp?.user1, userData.uid, temp?.user2);
+    theGame game = theGame(number.toString(),temp?.name,temp?.letterCount.toString(), user1uid, temp?.user1, userData.uid, temp?.user2);
     game_rt.addItem(game.toJson());
 
     Navigator.push(
