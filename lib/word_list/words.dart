@@ -48,7 +48,6 @@ class words {
     return result;
   }
 
-
  static List<String> four = [
   'ANNE','ADAM,''AYAK','AYNA','AĞIR','ASMA','AŞIK','ANAY','AĞIZ','AĞIR','ASMA','ATMA','ARAB','AZAP',
   'AFİF', 'AHEN', 'ASMA', 'ALET', 'ALIN', 'ADIM', 'AKSİ', 'AYAN', 'AÇIK', 'ASYA', 'AÇAR', 'ACAR', 'ANIK', 'AKIL', 'ATAK', 'AKAN', 'AFET', 'ARPA', 'AFRA', 'ASAR', 'ARIK', 'ARIK', 'ARMA', 'AKAR', 'ATIŞ', 'AYAR', 'AFİF', 'ACAR', 'ALAN', 'AÇAR', 'AYAR', 'ADIM', 'AFAK', 'AÇIK', 'ATAR', 'AÇIK', 'AYAK', 'AYAZ', 'ALIN', 'AMİL', 'AFİL', 'ARAZ', 'ASAR', 'AKAR', 'ARAK', 'AYAN', 'AYAK', 'AYAN', 'AMAN', 'AMEL', 'ALAY', 'ASAR', 'AVNİ', 'AKAR', 'ANKA', 'AYAR', 'ARIK', 'ASIL', 'ACAR', 'AÇAR', 'AZAP', 'AFİF', 'AYAZ', 'ATAR', 'ATAR', 'AÇAR', 'AMAN', 'AYVA', 'ATAR', 'AKAN', 'ARIK', 'ACAR', 'ATAR', 'ANIK', 'ADAK', 'AYVA', 'ADAK', 'ANAK', 'ASMA', 'AMAN', 'AKAR', 'AMCA', 'AVNİ', 'ARIK', 'AFİF', 'AKSU',
