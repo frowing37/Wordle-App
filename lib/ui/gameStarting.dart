@@ -1,6 +1,8 @@
 import 'dart:async';
+import 'package:app4/data/thGame_realtime_database.dart';
 import 'package:app4/model/theGame.dart';
 import 'package:app4/model/userData.dart';
+import 'package:app4/ui/game_ui.dart';
 import 'package:app4/word_list/words.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -26,10 +28,12 @@ class _gameStartingState extends State<gameStarting> {
   List<TextEditingController> controllers = [];
 
   words wordControl = words();
+  theGame_RT rt = theGame_RT();
   String warningMessage = "";
   int timeCounter = 60;
   bool typeMessage = false;
   bool isReady = false;
+  bool isEnabled = true;
   var successMessage = TextStyle(color: Colors.green, fontWeight: FontWeight.bold);
   var errorMessage = TextStyle(color: Colors.red, fontWeight: FontWeight.bold);
 
@@ -119,6 +123,8 @@ class _gameStartingState extends State<gameStarting> {
       setState(() {
         warningMessage = "Rakibinizin Hazır Olması Bekleniyor";
         typeMessage = true;
+        rt.updateGame(game.gameID.toString(), userData.uid.toString(), returnWord());
+        isEnabled = false;
       });
     } else {
       setState(() {
@@ -150,6 +156,19 @@ class _gameStartingState extends State<gameStarting> {
     });
   }
 
+  void timeControl() {
+    Timer.periodic(Duration(seconds: 1), (timer) async {
+      if(await rt.controlUsersReady(game.gameID.toString())) {
+        Navigator.push(
+      context,
+      MaterialPageRoute(
+          builder: (context) => GAME(int.parse(game.letterCount!), game, userData)),
+    );
+     }
+    }
+   );
+  }
+
   @override
   void initState() {
     super.initState();
@@ -157,6 +176,7 @@ class _gameStartingState extends State<gameStarting> {
       controllers.add(TextEditingController());
     }
     timeCount();
+    timeControl();
   }
 
   @override
@@ -198,6 +218,8 @@ class _gameStartingState extends State<gameStarting> {
               onChanged: (value) {
                 if (value.isNotEmpty && index < widget.count! - 1) {
                   FocusScope.of(context).nextFocus();
+                } else {
+                  FocusScope.of(context).previousFocus();
                 }
               },
             ),
@@ -214,7 +236,7 @@ class _gameStartingState extends State<gameStarting> {
       SizedBox(height: 30.0),
       Text(warningMessage,style: typeMessage ? successMessage : errorMessage),
       SizedBox(height: 150.0),
-      ElevatedButton(onPressed: () { theBoyisReady(); }, child: Text("Oyuna Başla", style: TextStyle(color: Colors.green)))
+      ElevatedButton(onPressed: isEnabled ? () { theBoyisReady(); } : null ,style: ElevatedButton.styleFrom() ,child: Text("Oyuna Başla", style: TextStyle(color: Colors.green)))
     ]
   )
   );

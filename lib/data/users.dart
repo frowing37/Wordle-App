@@ -6,9 +6,9 @@ class UserDB {
 final CollectionReference usersCollection = FirebaseFirestore.instance.collection("User");
 
 // Yeni bir kullanıcı ekleme
-Future<void> addUser(String username, String email, String password) async {
+Future<void> addUser(String uid,String username, String email, String password) async {
   return usersCollection
-      .add({'username': username, 'mail': email, 'password': password})
+      .add({'uid': uid,'username': username, 'mail': email, 'password': password})
       .then((value) => print("Kullanıcı eklendi"))
       .catchError((error) => print("Hata: $error"));
 }

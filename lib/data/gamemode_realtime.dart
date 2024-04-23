@@ -45,6 +45,7 @@ class Gamemode_RT {
 
   Future<gameMode?> updateGameMode(String user2, String roomId) async {
     Completer<gameMode> completer = Completer<gameMode>();
+    gameMode temp = gameMode.nul();
 
     try {
     var subscription;
@@ -53,19 +54,17 @@ class Gamemode_RT {
       if (json != null && json is Map) {
         json.forEach((key, value) {
           if (value["roomID"].toString() == roomId.toString()) {
-            gameMode temp = gameMode(value["name"], value["letterCount"], value["user1"], user2, value["roomID"]);
-            _dbRef.child(key).update(temp.toJson()).then((_) {
-              subscription.cancel();
-              completer.complete(); // İşlem tamamlandı
-            }).catchError((error) {
-              completer.completeError(error); // Hata durumunda Completer ile hata döndürülür
-            });
+            temp = gameMode(value["name"], value["letterCount"], value["user1"], user2, value["roomID"]);
+            _dbRef.child(key).update(temp.toJson());
           }
         });
+
+            subscription.cancel();
+            completer.complete(temp);
       }
     });
   } catch (error) {
-    completer.completeError(error); // Hata durumunda Completer ile hata döndürülür
+    completer.completeError(error);
   }
 
    return completer.future;

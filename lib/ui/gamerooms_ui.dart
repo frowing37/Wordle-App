@@ -74,7 +74,6 @@ class activeGameRooms extends State<activeRooms> {
   }
 
   Future<void> directToGameStarting(String user2, String roomId) async {
-
     gameMode? temp = await rt.updateGameMode(user2, roomId);
     var result = await users.getUserByUsername(temp?.user1);
     String? user1uid;
@@ -82,16 +81,25 @@ class activeGameRooms extends State<activeRooms> {
     if (result.docs.isNotEmpty) {
       var document = result.docs.first;
       user1uid = document["uid"];
-      }
-    
+    }
+
     int number = rnd.nextInt(100000) + 10000;
-    theGame game = theGame(number.toString(),temp?.name,temp?.letterCount.toString(), user1uid, temp?.user1, userData.uid, temp?.user2);
+    theGame game = theGame(
+        number.toString(),
+        temp?.name,
+        temp?.letterCount.toString(),
+        user1uid,
+        temp?.user1,
+        userData.uid,
+        temp?.user2);
     game_rt.addItem(game.toJson());
 
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => gameStarting(temp?.letterCount, userData, game)),
-      );
+      MaterialPageRoute(
+          builder: (context) =>
+              gameStarting(temp?.letterCount, userData, game)),
+    );
   }
 
   Widget build(BuildContext context) {
@@ -192,7 +200,11 @@ class activeGameRooms extends State<activeRooms> {
                                       ),
                                     ),
                                     ElevatedButton(
-                                      onPressed: () { directToGameStarting(gameModes[index].user2.toString(),gameModes[index].roomID.toString()); },
+                                      onPressed: () {
+                                        directToGameStarting(
+                                            userData.displayName.toString(),
+                                            gameModes[index].roomID.toString());
+                                      },
                                       child: Icon(Icons.play_arrow,
                                           color: Colors.green, size: 35),
                                       style: ElevatedButton.styleFrom(

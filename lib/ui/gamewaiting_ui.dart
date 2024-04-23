@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:app4/data/gamemode_realtime.dart';
 import 'package:app4/data/thGame_realtime_database.dart';
 import 'package:app4/model/userData.dart';
@@ -29,6 +31,7 @@ class _gameWaiting extends State<gameWaiting> with SingleTickerProviderStateMixi
       duration: Duration(seconds: 2),
       vsync: this,
     )..repeat();
+    time();
   }
 
   @override
@@ -37,14 +40,23 @@ class _gameWaiting extends State<gameWaiting> with SingleTickerProviderStateMixi
     super.dispose();
   }
 
+  void time() {
+    Timer.periodic(Duration(seconds: 1), (timer) {
+      // Her 2 saniyede bir UI'yı yenileyin
+      controlRoom(roomID.toString());
+    });
+  }
+
   Gamemode_RT rt = Gamemode_RT();
   theGame_RT game_rt = theGame_RT();
+  bool isReady = true;
 
   void controlRoom(String roomID) async {
-    if(await rt.roomIsReady(roomID)) {
+    if(await rt.roomIsReady(roomID) && isReady) {
       
       var result = await game_rt.getGameWithUsername(userData.displayName.toString());
       var value = await rt.getGameMode(roomID);
+      isReady = false;
 
       Navigator.push(
       context,
@@ -54,9 +66,7 @@ class _gameWaiting extends State<gameWaiting> with SingleTickerProviderStateMixi
   }
 
   void exitAndDelete(int roomID) {
-
     rt.deleteItem(roomID);
-
     Navigator.push(
       context,
       MaterialPageRoute(builder: (context) => activeRooms(userData: userData)),

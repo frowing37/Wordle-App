@@ -16,10 +16,15 @@ class registerScreen extends StatelessWidget {
     try {
       UserCredential userCredential = await _auth.createUserWithEmailAndPassword(
         email: _emailController.text,
-        password: _passwordController.text,
+        password: _passwordController.text
       );
 
-      _userManager.addUser(_usernameController.text,
+      UserCredential tempUser = await _auth.signInWithEmailAndPassword(
+        email: _emailController.text,
+        password: _passwordController.text);
+
+      _userManager.addUser(tempUser.user!.uid,
+                           _usernameController.text,
                            _emailController.text,
                            _passwordController.text);
 

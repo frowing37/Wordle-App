@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:app4/data/turns_realtime.dart';
 import 'package:app4/model/theGame.dart';
 import 'package:app4/model/turns.dart';
@@ -49,7 +48,7 @@ class _GAME extends State<GAME> {
   var indexClose = Colors.orangeAccent;
   var indexWrong = Colors.grey;
   List<indexC> indexesState = [];
-  String targetWord = "DAHİL";
+  String targetWord = " ";
 
   words wordControl = words();
   turns_RT rt = turns_RT();
@@ -57,6 +56,11 @@ class _GAME extends State<GAME> {
   @override
   void initState() {
     super.initState();
+    if(game.u1ID == userData.uid) {
+      targetWord = game.u2Target.toString();
+    } else {
+      targetWord = game.u1Target.toString();
+    }
     for (int i = 0; i < widget.count; i++) {
       List<TextEditingController> list = [];
       for (int j = 0; j < widget.count; j++) {
