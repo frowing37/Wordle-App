@@ -1,7 +1,9 @@
 import 'dart:async';
+import 'dart:js_interop';
 import 'dart:math';
 import 'package:app4/data/gamemode_realtime.dart';
 import 'package:app4/data/thGame_realtime_database.dart';
+import 'package:app4/data/turns_realtime.dart';
 import 'package:app4/data/users.dart';
 import 'package:app4/model/gameMode.dart';
 import 'package:app4/model/theGame.dart';
@@ -27,6 +29,7 @@ class activeGameRooms extends State<activeRooms> {
   UserDB users = UserDB();
   Gamemode_RT rt = Gamemode_RT();
   theGame_RT game_rt = theGame_RT();
+  turns_RT turns_rt = turns_RT();
   List<gameMode> gameModes = [];
 
   @override
@@ -93,6 +96,8 @@ class activeGameRooms extends State<activeRooms> {
         userData.uid,
         temp?.user2);
     game_rt.addItem(game.toJson());
+    rt.deleteItem(roomId);
+    turns_rt.createTurnObject(number.toString(), user1uid.toString(), userData.uid.toString());
 
     Navigator.push(
       context,

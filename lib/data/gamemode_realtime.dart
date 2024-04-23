@@ -120,7 +120,7 @@ class Gamemode_RT {
    return completer.future;
   }
 
-  Future<void> deleteItem(int roomId) async {
+  Future<void> deleteItem(String roomId) async {
   Completer<void> completer = Completer<void>();
 
   try {

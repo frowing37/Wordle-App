@@ -1,10 +1,12 @@
 import 'dart:async';
+import 'package:app4/data/thGame_realtime_database.dart';
 import 'package:app4/data/turns_realtime.dart';
 import 'package:app4/model/theGame.dart';
 import 'package:app4/model/turns.dart';
 import 'package:app4/model/userData.dart';
 import 'package:app4/word_list/words.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 
 class indexC {
@@ -21,19 +23,18 @@ class GAME extends StatefulWidget {
   final theGame game;
   final UserData userData;
 
-  GAME(this.count,this.game,this.userData);
+  GAME(this.count, this.game, this.userData);
 
   @override
-  _GAME createState() => _GAME(this.count,this.game,this.userData);
-
+  _GAME createState() => _GAME(this.count, this.game, this.userData);
 }
 
 class _GAME extends State<GAME> {
   final int count;
-  final theGame game;
+  theGame game;
   final UserData userData;
 
-  _GAME(this.count,this.game,this.userData);
+  _GAME(this.count, this.game, this.userData);
 
   List<List<TextEditingController>> controllers = [];
   int turnCount = 0;
@@ -42,7 +43,8 @@ class _GAME extends State<GAME> {
   bool correctFinish = false;
   bool isFinish = false;
   bool typeMessage = false;
-  var successMessage = TextStyle(color: Colors.green, fontWeight: FontWeight.bold);
+  var successMessage =
+      TextStyle(color: Colors.green, fontWeight: FontWeight.bold);
   var errorMessage = TextStyle(color: Colors.red, fontWeight: FontWeight.bold);
   var indexCorrect = Colors.lightGreen;
   var indexClose = Colors.orangeAccent;
@@ -52,14 +54,20 @@ class _GAME extends State<GAME> {
 
   words wordControl = words();
   turns_RT rt = turns_RT();
+  theGame_RT game_rt = theGame_RT();
 
   @override
   void initState() {
     super.initState();
-    if(game.u1ID == userData.uid) {
-      targetWord = game.u2Target.toString();
+    first();
+    if (game.u1ID == userData.uid) {
+      setState(() {
+        targetWord = game.u2Target.toString();
+      });
     } else {
-      targetWord = game.u1Target.toString();
+      setState(() {
+        targetWord = game.u1Target.toString();
+      });
     }
     for (int i = 0; i < widget.count; i++) {
       List<TextEditingController> list = [];
@@ -72,13 +80,21 @@ class _GAME extends State<GAME> {
     time();
   }
 
+  void first() async {
+    game = await game_rt.getGameWithID(game.gameID.toString());
+  }
+
   void time() {
     Timer.periodic(Duration(seconds: 1), (timer) async {
       turns turnObject = await rt.getTurnWithID(game.gameID);
-      if(turnObject.u1ID == userData.uid) {
-        rivalTurnCount = turnObject.u2Turns.length;
+      if (turnObject.u1ID == userData.uid) {
+        setState(() {
+          rivalTurnCount = turnObject.u2Turns.length;
+        });
       } else {
-        rivalTurnCount = turnObject.u1Turns.length;
+        setState(() {
+          rivalTurnCount = turnObject.u1Turns.length;
+        });
       }
     });
   }
@@ -206,7 +222,12 @@ class _GAME extends State<GAME> {
 
   void controlIndex(String input) {
     List<String> inputChars = input.split("");
-    List<String> targetChars = targetWord.split("");
+    List<String> targetChars = [];
+    if (userData.uid == game.u1ID) {
+      targetChars = game.u2Target!.split("");
+    } else {
+      targetChars = game.u1Target!.split("");
+    }
     int correctCount = 0;
 
     for (int i = 0; i < widget.count; i++) {
@@ -230,26 +251,39 @@ class _GAME extends State<GAME> {
       }
     }
 
-    if(correctCount == inputChars.length) {
+    if (correctCount == inputChars.length) {
       setState(() {
         correctFinish = true;
       });
     }
   }
 
+  int calculatePoint() {
+    int point = 0;
+    for(int i = 0; i < widget.count; i++) {
+      if(indexesState.reversed.toList()[i].state == Colors.lightGreen) {
+        point+10;
+      } 
+      else if(indexesState.reversed.toList()[i].state == Colors.orangeAccent) {
+        point+5;
+      }
+    }
+
+    return point;
+  }
+
   void turnControl() {
-    if(turnCount + 1 == count) {
-      if(correctFinish) {
+    if (turnCount + 1 == count) {
+      if (correctFinish) {
         warningMessage = "Tebrikler kelime tahmininiz doğru !";
         typeMessage = true;
       } else {
         warningMessage = "Hamle hakkınız kalmadı, kelimeyi bilemediniz :(";
         typeMessage = false;
       }
-    }
-    else if(correctFinish) {
+    } else if (correctFinish) {
       warningMessage = "Tebrikler kelime tahmininiz doğru !";
-        typeMessage = true;
+      typeMessage = true;
     }
 
     setState(() {
@@ -265,7 +299,10 @@ class _GAME extends State<GAME> {
       children: [
         Row(
           children: [
-            Text("   Rakibin anlık hamle sayısı\n   ve puanı = "+"${rivalTurnCount}"+" / 0",
+            Text(
+                "   Rakibin anlık hamle sayısı\n   ve puanı = " +
+                    "${rivalTurnCount}" +
+                    " / 0",
                 style: TextStyle(fontSize: 15))
           ],
         ),
@@ -320,11 +357,25 @@ class _GAME extends State<GAME> {
               onPressed: () {
                 if (controlWord(returnWord())) {
                   controlIndex(returnWord());
+                  rt.addWordToTurns(game.gameID.toString(),
+                      userData.uid.toString(), returnWord());
                   turnControl();
                 }
               },
-              child: isFinish ? Text("Sonuçları Gör", style: TextStyle(fontWeight: FontWeight.bold,fontSize: 22)) : Text("Hamleyi Onayla", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15)),
-              style: isFinish ? ElevatedButton.styleFrom(foregroundColor: Colors.white, backgroundColor: Colors.green, fixedSize: Size(200, 50)) : ElevatedButton.styleFrom(foregroundColor: Colors.green, fixedSize: Size(170, 30)))
+              child: isFinish
+                  ? Text("Sonuçları Gör",
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 22))
+                  : Text("Hamleyi Onayla",
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 15)),
+              style: isFinish
+                  ? ElevatedButton.styleFrom(
+                      foregroundColor: Colors.white,
+                      backgroundColor: Colors.green,
+                      fixedSize: Size(200, 50))
+                  : ElevatedButton.styleFrom(
+                      foregroundColor: Colors.green, fixedSize: Size(170, 30)))
         ]),
       ],
     ));

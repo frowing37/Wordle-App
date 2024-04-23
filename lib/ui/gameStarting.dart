@@ -34,11 +34,11 @@ class _gameStartingState extends State<gameStarting> {
   bool typeMessage = false;
   bool isReady = false;
   bool isEnabled = true;
+  bool check = true;
   var successMessage = TextStyle(color: Colors.green, fontWeight: FontWeight.bold);
   var errorMessage = TextStyle(color: Colors.red, fontWeight: FontWeight.bold);
 
-  String returnWord() {
-    
+  String returnWord() { 
     String combinedText = "";
     controllers.forEach((controller) {
       combinedText += controller.text;
@@ -158,7 +158,8 @@ class _gameStartingState extends State<gameStarting> {
 
   void timeControl() {
     Timer.periodic(Duration(seconds: 1), (timer) async {
-      if(await rt.controlUsersReady(game.gameID.toString())) {
+      if(await rt.controlUsersReady(game.gameID.toString()) && check) {
+        check = false;
         Navigator.push(
       context,
       MaterialPageRoute(
@@ -229,7 +230,7 @@ class _gameStartingState extends State<gameStarting> {
     ),
       SizedBox(height: 30.0),
       Row(mainAxisAlignment: MainAxisAlignment.center,children: [
-      ElevatedButton(onPressed: () { print(returnWord()); controlWord(returnWord()); },
+      ElevatedButton(onPressed: isEnabled ? () { print(returnWord()); controlWord(returnWord()); } : null,
        child: Text("Onayla",style: TextStyle(color: Colors.green)),
        style: ElevatedButton.styleFrom(),)
     ]),

@@ -7,6 +7,11 @@ class turns_RT {
 
   DatabaseReference _dbRef = FirebaseDatabase.instance.ref().child("turns/");
 
+  void createTurnObject(String gameID, String u1ID, String u2ID) async {
+    turns object = turns(gameID,u1ID,u2ID);
+    _dbRef.push().set(object.toJson());
+  }
+
   Future<turns> getTurnWithID(String? gameID) async {
     Completer<turns> completer = Completer<turns>();
     turns turnsObject = turns.nul();
@@ -41,7 +46,11 @@ class turns_RT {
         json.forEach((key, value) {
           if(value["gameID"].toString() == gameID) {
             turns turnObject = turns.allField(value["gameID"].toString(),value["u1ID"].toString(),value["u1Turns"],value["u2ID"].toString(),value["u2Turns"]);
-            turnObject.addTurn(userID, word);
+            if(value["u1ID"] == userID) {
+              turnObject.addTurn("u1", word);
+            } else {
+              turnObject.addTurn("u2", word);
+            }
             _dbRef.child(key).update(turnObject.toJson());
           }
         });

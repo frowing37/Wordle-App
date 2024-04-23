@@ -38,17 +38,17 @@ class theGame_RT {
 
     try {
       var subscription;
-      subscription = _dbRef.onValue.listen((event) { 
+      subscription = _dbRef.onValue.listen((event) {
         var json = event.snapshot.value;
         if(json != null && json is Map) {
           json.forEach((key, value) {
             if(value["gameID"] == gameID) {
               if(value["user1UID"] == userID) {
-                game = theGame.allField(gameID, value["gameMode"], value["letterCount"], value["user1UID"], value["user1Name"], " ", value["user1IsReady"], value["user2UID"], value["user2Name"], targetWord, value["user2IsReady"]);
+                game = theGame.allField(gameID, value["gameMode"], value["letterCount"], value["user1UID"], value["user1Name"], value["user1Target"], value["user1IsReady"], value["user2UID"], value["user2Name"], targetWord, value["user2IsReady"]);
                 game.setU1Ready();
                 _dbRef.child(key).update(game.toJson());
               } else {
-                game = theGame.allField(gameID,value["gameMode"],value["letterCount"], value["user1UID"], value["user1Name"], targetWord, value["user1IsReady"], value["user2UID"], value["user2Name"], " ", value["user2IsReady"]);
+                game = theGame.allField(gameID,value["gameMode"],value["letterCount"], value["user1UID"], value["user1Name"], targetWord, value["user1IsReady"], value["user2UID"], value["user2Name"], value["user2Target"], value["user2IsReady"]);
                 game.setU2Ready();
                 _dbRef.child(key).update(game.toJson());
               }
@@ -124,5 +124,29 @@ class theGame_RT {
     return completer.future;
   }
 
+  Future<theGame> getGameWithID(String gameID) async {
+    Completer<theGame> completer = Completer<theGame>();
+    theGame game = theGame.nul();
+
+    try {
+      var subscription;
+      subscription = _dbRef.onValue.listen((event) { 
+        var json = event.snapshot.value;
+        if(json != null && json is Map) {
+          json.forEach((key, value) {
+            if(value["gameID"] == gameID) {
+              game = theGame.allField(value["gameID"], value["gameMode"], value["letterCount"], value["user1UID"], value["user1Name"], value["user1Target"], value["user1IsReady"], value["user2UID"], value["user2Name"], value["user2Target"], value["user2IsReady"]);
+            }
+           });
+
+          subscription.cancel();
+          completer.complete(game);
+        }
+      });
+    } catch(error) {
+      print(error);
+    }
+    return completer.future;
+  }
 
 }

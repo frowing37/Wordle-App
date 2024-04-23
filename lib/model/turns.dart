@@ -14,8 +14,8 @@ class turns {
 
   turns.nul();
 
-  void addTurn(String user, String word) {
-    if(user == "u1") {
+  void addTurn(String uid, String word) {
+    if(uid == "u1") {
       u1Turns.add(word);
     } else {
       u2Turns.add(word);

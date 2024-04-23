@@ -66,7 +66,7 @@ class _gameWaiting extends State<gameWaiting> with SingleTickerProviderStateMixi
   }
 
   void exitAndDelete(int roomID) {
-    rt.deleteItem(roomID);
+    rt.deleteItem(roomID.toString());
     Navigator.push(
       context,
       MaterialPageRoute(builder: (context) => activeRooms(userData: userData)),
