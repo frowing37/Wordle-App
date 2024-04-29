@@ -180,7 +180,7 @@ class gamerBaseScreen extends State<gameModeSelection> {
                           vertical: secondButtonSelected ? 20 : 30,
                           horizontal: 33),
                     ),
-                    child: Text('Kelime Önerisi\n        Modu',
+                    child: Text('Serbest\n   Mod',
                         style: TextStyle(
                             color: secondButtonSelected
                                 ? Colors.white
@@ -229,7 +229,7 @@ class gamerBaseScreen extends State<gameModeSelection> {
                       gotoWait(randomNumber);
                     } else {
                       randomNumber = random.nextInt(90000) + 10000;
-                      rt.addItem(gameMode("Kelime Önerisi Modu", number,
+                      rt.addItem(gameMode("Serbest Mod", number,
                               userData.displayName, " ", randomNumber.toString())
                           .toJson());
                       gotoWait(randomNumber);

@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:js_interop';
 import 'dart:math';
 import 'package:app4/data/gamemode_realtime.dart';
 import 'package:app4/data/thGame_realtime_database.dart';

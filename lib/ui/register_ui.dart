@@ -4,13 +4,24 @@ import 'package:app4/ui/login_ui.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
-class registerScreen extends StatelessWidget {
+class registerScreen extends StatefulWidget {
+
+   @override
+   _registerScreen createState() => _registerScreen();
+}
+
+
+class _registerScreen extends State<registerScreen> {
   
   final FirebaseAuth _auth = FirebaseAuth.instance;
   TextEditingController _usernameController = TextEditingController();
   TextEditingController _emailController = TextEditingController();
   TextEditingController _passwordController = TextEditingController();
   UserDB _userManager = new UserDB();
+  String message = "";
+  TextStyle correct = TextStyle(color: Colors.green,fontWeight: FontWeight.bold);
+  TextStyle wrong = TextStyle(color: Colors.red,fontWeight: FontWeight.bold);
+  bool messageState = false;
 
   Future<void> _register() async {
     try {
@@ -27,6 +38,12 @@ class registerScreen extends StatelessWidget {
                            _usernameController.text,
                            _emailController.text,
                            _passwordController.text);
+
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) =>
+          registerScreen()));
 
       // Kullanıcı başarıyla kaydedildi, burada giriş ekranına yönlendirme yapılabilir.
     print("Kayıt işlemi başarılı");
@@ -120,7 +137,11 @@ class registerScreen extends StatelessWidget {
                         )
                       ),
                     ),
-                    SizedBox(height: 40),
+                    SizedBox(height: 15),
+                    Row(mainAxisAlignment: MainAxisAlignment.center,children: [
+                      Text(message, style: messageState ? correct : wrong)
+                    ]),
+                    SizedBox(height: 15),
                     Stack(
                       children: [
                         Positioned.fill(

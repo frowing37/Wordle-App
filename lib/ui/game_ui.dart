@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:math';
 import 'package:app4/data/thGame_realtime_database.dart';
 import 'package:app4/data/turns_realtime.dart';
 import 'package:app4/model/theGame.dart';
@@ -51,10 +52,12 @@ class _GAME extends State<GAME> {
   var indexWrong = Colors.grey;
   List<indexC> indexesState = [];
   String targetWord = " ";
+  int rndIndex = 0;
 
   words wordControl = words();
   turns_RT rt = turns_RT();
   theGame_RT game_rt = theGame_RT();
+  Random rnd = Random();
 
   @override
   void initState() {
@@ -69,8 +72,24 @@ class _GAME extends State<GAME> {
         targetWord = game.u1Target.toString();
       });
     }
+    if(game.gameMode == "Harf Sabiti Modu") {
+      rndIndex = rnd.nextInt(count);
+    }
     for (int i = 0; i < widget.count; i++) {
       List<TextEditingController> list = [];
+      if(game.gameMode == "Harf Sabiti Modu") {
+        if(game.u1ID == userData.uid) {
+          for(int k = 0; k < rndIndex; k++) {
+            list.add(TextEditingController(text: ""));
+          }
+        list.add(TextEditingController(text: game.u1Target?[rndIndex]));
+      } else {
+        for(int k = 0; k < rndIndex; k++) {
+            list.add(TextEditingController(text: ""));
+          }
+        list.add(TextEditingController(text: game.u1Target?[rndIndex]));
+      }
+      }
       for (int j = 0; j < widget.count; j++) {
         list.add(TextEditingController());
         indexesState.add(indexC(i, j));
